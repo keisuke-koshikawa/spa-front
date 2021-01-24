@@ -11,7 +11,7 @@
     </label>
     <input v-model="password" id="password" type="password" placeholder="******************">
   </div>
-  <button @click="login">
+  <button @click="handleLogin()">
     Sign In
   </button>
 </template>
@@ -27,15 +27,16 @@ export default defineComponent({
       email: '',
       password: ''
     })
+    const handleLogin = () => {
+      login(formData.email, formData.password)
+        .then((data) => {
+          console.log(data)
+        })
+    }
 
     return {
       ...toRefs(formData),
-      login: () => {
-        login(formData.email, formData.password)
-          .then((data) => {
-            console.log(data)
-          })
-      }
+      handleLogin
     }
   }
 })
